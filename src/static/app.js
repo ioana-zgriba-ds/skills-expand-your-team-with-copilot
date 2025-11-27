@@ -480,7 +480,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Function to generate share text for an activity
   function generateShareText(activityName, description) {
-    return `Check out ${activityName} at Mergington High School! ${description}`;
+    const baseText = `Check out ${activityName} at Mergington High School!`;
+    // Truncate description to avoid exceeding platform character limits (especially Twitter's 280)
+    const maxDescLength = 100;
+    const truncatedDesc = description.length > maxDescLength 
+      ? description.substring(0, maxDescLength) + '...' 
+      : description;
+    return `${baseText} ${truncatedDesc}`;
   }
 
   // Function to render a single activity card
@@ -556,7 +562,7 @@ document.addEventListener("DOMContentLoaded", () => {
              rel="noopener noreferrer" 
              class="share-button share-whatsapp" 
              title="Share on WhatsApp">
-            <span class="share-icon">✆</span>
+            <span class="share-icon">W</span>
           </a>
         </div>
       </div>
